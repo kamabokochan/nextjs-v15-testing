@@ -1,7 +1,4 @@
-type UserInfo = {
-	id: number;
-	name: string;
-};
+import { UserInfo } from "@/types/data";
 
 export async function getUserInfo(): Promise<UserInfo[]> {
 	return [

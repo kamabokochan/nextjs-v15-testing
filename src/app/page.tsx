@@ -1,9 +1,9 @@
-import { getUserInfo } from "@/data/userInfo";
+import { UserInfo } from "@/types/data";
 import Link from "next/link";
 
 export default async function Page() {
-	const userInfo = await getUserInfo();
-
+	const response = await fetch("http://localhost:3000/api/userInfo");
+	const userInfo = (await response.json()) as UserInfo[];
 	// error.tsx 動作確認用
 	// throw new Error("Errorが発生しました");
 
