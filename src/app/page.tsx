@@ -1,17 +1,25 @@
 import { UserInfo } from "@/types/data";
+import { request } from "@/utils/request";
 import Link from "next/link";
 
 export default async function Page() {
-	const response = await fetch("http://localhost:3000/api/userInfo");
-	const userInfo = (await response.json()) as UserInfo[];
-	// error.tsx 動作確認用
-	// throw new Error("Errorが発生しました");
+	const response = await request<UserInfo[]>(
+		"http://localhost:3000/api/userInfo",
+	);
+
+	if (response.ok === false || response.data === undefined) {
+		throw new Error("データの取得に失敗しました");
+	}
+
+	if (response.data.length === 0) {
+		return <p>データなし</p>;
+	}
 
 	return (
 		<main>
 			<h1>ユーザ情報を表示</h1>
 			<ul>
-				{userInfo.map((user) => (
+				{response.data.map((user) => (
 					<li key={user.id}>
 						<Link href={`/user/${user.id}`}>{user.name}</Link>
 					</li>
