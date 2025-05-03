@@ -1,7 +1,17 @@
-export async function getUserInfo() {
-	return {
-		user: "user01",
-		age: 18,
-		link: "https://example.com/profile/user01",
-	};
+type UserInfo = {
+	id: number;
+	name: string;
+};
+
+export async function getUserInfo(): Promise<UserInfo[]> {
+	return [
+		{
+			id: 1,
+			name: "user01",
+		},
+		{
+			id: 2,
+			name: "user02",
+		},
+	];
 }
