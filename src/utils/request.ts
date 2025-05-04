@@ -10,8 +10,6 @@ export async function request<T>(
 		},
 	});
 
-	console.log(response);
-
 	if (!response.ok) {
 		return {
 			ok: response.ok,

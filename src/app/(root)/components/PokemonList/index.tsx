@@ -2,9 +2,13 @@ import { Pokemon } from "@/types/data";
 import { request } from "@/utils/request";
 import Link from "next/link";
 
-export async function PokemonList() {
+type Props = {
+	type?: string;
+};
+
+export async function PokemonList({ type }: Props) {
 	const response = await request<Pokemon[]>(
-		"http://localhost:3000/api/pokemonList",
+		`http://localhost:3000/api/pokemonList?type=${type}`,
 	);
 
 	if (response.ok === false || response.data === undefined) {

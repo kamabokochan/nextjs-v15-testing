@@ -1,4 +1,4 @@
-export type Type = "くさ" | "ほのお" | "みず" | "でんき" | "ノーマル";
+export type Type = "grass" | "fire" | "water" | "electric" | "normal";
 
 export type Pokemon = {
 	id: number;

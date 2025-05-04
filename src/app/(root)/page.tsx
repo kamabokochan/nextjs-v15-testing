@@ -1,10 +1,19 @@
-import { PokemonList } from "@/app/(root)/components/PokemonList";
+import { PokemonList } from "./components/PokemonList";
+import { TypeList } from "./components/TypeList";
 
-export default async function Page() {
+type Props = {
+	searchParams: Promise<{ [key: string]: string | undefined }>;
+};
+
+export default async function Page({ searchParams }: Props) {
+	const { type } = await searchParams;
 	return (
 		<main>
-			<h1>ポケモンリスト</h1>
-			<PokemonList />
+			<h1>Pokedex</h1>
+			<h2>Type</h2>
+			<TypeList />
+			<h2>Pokemon</h2>
+			<PokemonList type={type} />
 		</main>
 	);
 }
