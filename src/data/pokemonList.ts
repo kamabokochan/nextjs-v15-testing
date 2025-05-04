@@ -1,26 +1,26 @@
 import { Pokemon } from "@/types/data";
 
-export async function getPokemonInfo(): Promise<Pokemon[]> {
+export async function getPokemonList(): Promise<Pokemon[]> {
 	return [
 		{
 			id: 1,
 			name: "フシギダネ",
-			type: "草",
+			type: "くさ",
 		},
 		{
 			id: 2,
 			name: "ヒトカゲ",
-			type: "炎",
+			type: "ほのお",
 		},
 		{
 			id: 3,
 			name: "ゼニガメ",
-			type: "水",
+			type: "みず",
 		},
 		{
 			id: 4,
 			name: "ピカチュウ",
-			type: "電気",
+			type: "でんき",
 		},
 		{
 			id: 5,
