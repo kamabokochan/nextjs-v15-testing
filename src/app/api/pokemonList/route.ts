@@ -1,19 +1,24 @@
 import { getPokemonList } from "@/data/pokemonList";
 import { Type } from "@/types/data";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-	const searchParams = request.nextUrl.searchParams;
-	const type = searchParams.get("type") as "all" | Type | null;
+	try {
+		const searchParams = request.nextUrl.searchParams;
+		const type = searchParams.get("type") as "all" | Type | null;
 
-	const pokemonList = await getPokemonList();
+		const pokemonList = await getPokemonList();
 
-	const filteredPokemonList = pokemonList.filter((pokemon) => {
-		if (type === null || type === "all") {
-			return true;
-		}
-		return pokemon.type === type;
-	});
+		const filteredPokemonList = pokemonList.filter((pokemon) => {
+			if (type === null || type === "all") {
+				return true;
+			}
+			return pokemon.type === type;
+		});
 
-	return Response.json(filteredPokemonList);
+		return NextResponse.json(filteredPokemonList, { status: 200 });
+	} catch (error) {
+		console.error(error);
+		return NextResponse.json([], { status: 500 });
+	}
 }
