@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { PokemonList } from "./components/PokemonList";
 import { TypeList } from "./components/TypeList";
 
@@ -13,7 +14,9 @@ export default async function Page({ searchParams }: Props) {
 			<h2>Type</h2>
 			<TypeList />
 			<h2>Pokemon</h2>
-			<PokemonList type={type} />
+			<Suspense key={type} fallback={<p>Loading...</p>}>
+				<PokemonList type={type} />
+			</Suspense>
 		</main>
 	);
 }

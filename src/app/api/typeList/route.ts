@@ -1,7 +1,7 @@
 import { getTypeList } from "@/data/typeList";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
 	try {
 		const typeList = await getTypeList();
 		return NextResponse.json(typeList);

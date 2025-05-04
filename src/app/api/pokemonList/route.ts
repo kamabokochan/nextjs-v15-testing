@@ -1,5 +1,6 @@
 import { getPokemonList } from "@/data/pokemonList";
 import { Type } from "@/types/data";
+import { sleep } from "@/utils/sleep";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -7,6 +8,7 @@ export async function GET(request: NextRequest) {
 		const searchParams = request.nextUrl.searchParams;
 		const type = searchParams.get("type") as "all" | Type | null;
 
+		await sleep(1000);
 		const pokemonList = await getPokemonList();
 
 		const filteredPokemonList = pokemonList.filter((pokemon) => {
