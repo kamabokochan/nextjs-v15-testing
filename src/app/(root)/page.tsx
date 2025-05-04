@@ -1,10 +1,10 @@
-import { UserInfo } from "@/types/data";
+import { Pokemon } from "@/types/data";
 import { request } from "@/utils/request";
 import Link from "next/link";
 
 export default async function Page() {
-	const response = await request<UserInfo[]>(
-		"http://localhost:3000/api/userInfo",
+	const response = await request<Pokemon[]>(
+		"http://localhost:3000/api/pokemonInfo",
 	);
 
 	if (response.ok === false || response.data === undefined) {
@@ -17,15 +17,14 @@ export default async function Page() {
 
 	return (
 		<main>
-			<h1>ユーザ情報を表示</h1>
+			<h1>ポケモンリスト</h1>
 			<ul>
-				{response.data.map((user) => (
-					<li key={user.id}>
-						<Link href={`/user/${user.id}`}>{user.name}</Link>
+				{response.data.map((pokemon) => (
+					<li key={pokemon.id}>
+						<Link href={`/pokemon/${pokemon.id}`}>{pokemon.name}</Link>
 					</li>
 				))}
 			</ul>
-			<Link href="/404">404ページ</Link>
 		</main>
 	);
 }
