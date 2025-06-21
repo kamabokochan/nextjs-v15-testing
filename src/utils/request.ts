@@ -1,23 +1,23 @@
 export async function request<T>(
-	url: string,
-	options?: RequestInit,
+  url: string,
+  options?: RequestInit,
 ): Promise<{ ok: boolean; data?: T }> {
-	const response = await fetch(url, {
-		...options,
-		headers: {
-			"Content-Type": "application/json",
-			...options?.headers,
-		},
-	});
+  const response = await fetch(url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options?.headers,
+    },
+  });
 
-	if (!response.ok) {
-		return {
-			ok: response.ok,
-		};
-	}
+  if (!response.ok) {
+    return {
+      ok: response.ok,
+    };
+  }
 
-	return {
-		ok: response.ok,
-		data: await response.json(),
-	};
+  return {
+    ok: response.ok,
+    data: await response.json(),
+  };
 }
